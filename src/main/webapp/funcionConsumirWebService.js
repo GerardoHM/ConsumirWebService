@@ -2,7 +2,6 @@ $(document).ready(function()
 				{
 			$("#productos").text("Cargando...");
 			var texto = "";
-			var texto1 = "";
 			var clave;
 			$.ajax({
 				type: 'GET',
@@ -24,7 +23,3 @@ $(document).ready(function()
 					  }
 			});
 });
-
-$('#seleccion').on('change', function() {
-	  alert( this.value );
-	});

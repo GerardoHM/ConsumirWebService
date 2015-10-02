@@ -11,6 +11,10 @@
 	<body>
 		<h1 align="center">Consumir Web Service Productos</h1>		
 		<div id="productos"></div>
-		<div id="productos1"></div>	
 	</body>
+	<script>
+	$('#seleccion').on('change', function() {
+		  alert( this.value );
+		});
+	</script>
 </html>

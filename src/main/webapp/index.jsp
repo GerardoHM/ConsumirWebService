@@ -3,18 +3,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Hello JQuery</title>
+		<title>Consumir Web Service con JQuery</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
 		<script type="text/javascript" src="funcionConsumirWebService.js"></script>
 	</head>
 	<body>
 		<h1 align="center">Consumir Web Service Productos</h1>		
-		<div id="productos"></div>
+		<div id="productos"></div><br/><br/>
+		<div id="valoresProductos"></div>
 	</body>
-	<script>
-	$('#seleccion').on('change', function() {
-		  alert( this.value );
-		});
-	</script>
 </html>

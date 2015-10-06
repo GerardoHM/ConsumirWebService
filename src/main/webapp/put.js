@@ -15,19 +15,22 @@ $(document).ready(function(){
 		var descripcionEquipo = document.getElementById("descripcionEquipo").value;
 		var status = document.getElementById("status").value;
 		
+		var productos = '{ "clave":'+clave+
+		', "descripcion": "'+descripcion+'"'+
+		', "uniMed":"'+uniMed+'"'+
+		', "stockMin":'+stockMin+
+		', "stockMax":'+stockMax+
+		', "tipoCosteo":"'+tipoCosteo+'"'+
+		', "fechaCompra":"'+fechaCompra+'"'+
+		' }';
+		
 		$.ajax({
 			type: "PUT",
-			url: "http://192.168.1.15:8008/demo/saveProductos",
-			data:{
-				clave: clave, descripcion: descripcion, uniMed: uniMed, stockMin: stockMin, 
-				stockMax: stockMax, tipoCosteo: tipoCosteo, fechaCompra: fechaCompra, 
-				fechaVenta: fechaVenta, existencia: existencia, costoProm: costoProm, 
-				ultCosto: ultCosto, cveImpuesto: cveImpuesto, descripcionEquipo: descripcionEquipo, 
-				status: status
-				},
+			url: " http://192.168.1.15:8008/demo/saveProductos",
+			data: productos,
 			contentType: "application/json",
-			success : function(saveProductos) {
-				alert('Yeah');
+			success : function() {
+				alert('El PUT se realizo correctamente');
 		    },
 		    error : function(xhr, status) {
 		        alert('Disculpe, existio un problema');

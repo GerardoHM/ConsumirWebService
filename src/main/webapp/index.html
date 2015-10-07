@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="jquery-1.11.3.js"></script>
+<script src="underscore.js"></script>
+<script src="backbone.js"></script>
+<script>
+	//creo un objeto cualquiera con Javascript, usando notacion JSON
+	var objeto = {};
+	//extiendo ese objeto con la clase BackBone.Events
+	_.extend(objeto, Backbone.Events);
+	
+	objeto.on("mi_primer_evento", function(msg){
+		alert("Se a desencadenado el " + msg);
+	});	
+	objeto.trigger("mi_primer_evento", "evento que acabamos de crear.");
+</script>
+</head>
+<body>
+	
+</body>
+</html>

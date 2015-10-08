@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ejemplos con Backbone.js</title>
 <script src="jquery-1.11.3.js"></script>
 <script src="underscore.js"></script>
 <script src="backbone.js"></script>
@@ -11,11 +11,124 @@
 	var objeto = {};
 	//extiendo ese objeto con la clase BackBone.Events
 	_.extend(objeto, Backbone.Events);
-	
-	objeto.on("mi_primer_evento", function(msg){
-		alert("Se a desencadenado el " + msg);
+	//pasando varios datos a la función manejadora
+	objeto.on("varios_datos", function(msg1, msg2){
+		alert("Se produjo el evento 'varios_datos' y he recibido " + msg1 + " y " + msg2);
 	});	
-	objeto.trigger("mi_primer_evento", "evento que acabamos de crear.");
+	objeto.trigger("varios_datos", "valor1", "valor2");
+</script>
+<script>
+	//creo un objeto nuevo al que le cargo algunos datos
+	var persona={
+			nombre: "Miguel"
+	};
+	//extiendo el objeto para que soporte objetos backbone.js
+	_.extend(persona, Backbone.Events);
+	//asigno una función manejadora a un nuevo evento
+	persona.on("segundo_evento", function(){
+		alert("Manejador de 'segundo evento'...");
+		alert("muestro this.nombre: " + this.nombre);
+	});
+	//disparo ese nuevo evento
+	persona.trigger("segundo_evento");
+</script>
+<script>
+	//creo un primer objeto
+	var fiatUno = {
+		marca: "Fiat"
+	}
+	//extiendo el objeto para que soporte eventos de Backbonejs
+	_.extend(fiatUno, Backbone.Events)
+	//creo un segundo objeto
+	var seatToledo = {
+		marca: "Seat"
+	}
+	//creo una función
+	function mostrarMarca(){
+		alert("La marca del objeto: " + this.marca)
+	}
+	//defino un evento sobre el primer objeto, cambiando el contexto de this
+	fiatUno.on("mievento", mostrarMarca, seatToledo);
+	//disparo el evento sobre el primer objeto
+	fiatUno.trigger("mievento");
+</script>
+<script>
+	// creo la clase Pelicula
+	var Pelicula = Backbone.Model.extend();
+	// creo un objeto de la clase Pelicula
+	var pelicula1 = new Pelicula();
+	
+	// asigno una propiedad de manera habitual con Javascript
+	pelicula1.titulo = "Lo que el viento se llevó";
+	// asigno una propiedad ahora de la manera útil para aprovechar Backbone.js
+	pelicula1.set("titulo", "Alguien voló sobre el nido del cuco");
+	
+	// muestro ambos datos y veo que son independientes
+	alert(pelicula1.titulo);
+	alert(pelicula1.get("titulo"));
+</script>
+<script>
+	var ClaseModelo = Backbone.Model.extend({
+		dato: "Yeah!!",
+		metodo: function(){
+			alert("funciona!!");
+		}
+	});
+	
+	var objClaseModelo = new ClaseModelo();
+	alert(objClaseModelo.dato);
+	objClaseModelo.metodo();
+</script>
+<script>
+	var ClaseModelo = Backbone.Model.extend({
+		propiedadInstancia: "Esta no es la que nos interesa ahora"
+	},{
+		propDeClase: "Prop estatica",
+		metodoDeClase: function(){
+			alert("este es un metodo estatico o metodo de clase");
+		}
+	  }
+	);
+	
+	ClaseModelo.metodoDeClase();
+	alert("esta es la propiedad: "+ ClaseModelo.propDeClase);
+</script>
+<script>
+	var MiModelo = Backbone.Model.extend({
+		dato: "hola mundo MiModelo",
+		holaModelo: function(){
+			alert(this.dato);
+		}
+	});	
+	
+	var objMiModelo = new MiModelo();
+	objMiModelo.holaModelo();
+</script>
+<script>
+	var MiModelo = Backbone.Model.extend({
+		holaModelo: function(){
+			alert(this.get("dato"));
+		}
+	});
+	
+	var objMiModelo = new MiModelo({
+		dato: "Hola mundo BackBone"
+	});
+	objMiModelo.holaModelo();
+</script>
+<script>
+	var MiModelo = Backbone.Model.extend({
+		dato: "hola mundo MiModelo",
+		holaModelo: function(){
+			alert(this.dato);
+			alert(this.get("dato"));
+		}
+	});
+	
+	var objMiModelo = new MiModelo({
+		dato: "Hola Al mundo Backbone!!"
+	});
+	objMiModelo.holaModelo();
 </script>
 </head>
 <body>
